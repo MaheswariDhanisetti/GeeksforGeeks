@@ -3,7 +3,6 @@
 Welcome to my GeeksforGeeks solutions repository! This repository houses my solutions to various problems from GeeksforGeeks (GFG). It's a compilation of my code and methodologies for tackling these challenges, intended to assist others in their preparation for technical interviews and improving their coding proficiency.
 
 ### Contents
-- **Organized by Topic:** Problems are categorized based on different data structures and algorithms such as Arrays, Linked Lists, Trees, Graphs, Dynamic Programming, etc.
 - **Language:** Solutions are primarily written in  C++.
 - **Problem Description:** Each solution includes a brief description of the problem statement.
 - **Solution Explanation:** Comments and explanations are provided to elucidate the approach and logic behind each solution.
