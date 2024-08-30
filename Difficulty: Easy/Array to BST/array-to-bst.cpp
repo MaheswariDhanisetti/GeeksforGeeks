@@ -80,31 +80,30 @@ struct Node {
 class Solution {
   public:
   
-    Node* solve(Node* root,int l,int h,vector<int>&nums){
+    Node* makeBST(int l,int h,vector<int>&nums){
         
         if(l>h) return NULL;
         
-        int mid=l+(h-l)/2;
+        // if(l==h){
+        //     return new Node(nums[mid]);
+        // }
         
-        Node* temp=new Node(nums[mid]);
-        if(temp->data < root->data)
-            root->left=temp;
+        int mid=(l+h)/2;
         
-        else
-            root->right=temp;
-        solve(temp,l,mid-1,nums);
-        solve(temp,mid+1,h,nums);
-        return temp;
+        Node* root=new Node(nums[mid]);
+        root->left=makeBST(l,mid-1,nums);
+        root->right=makeBST(mid+1,h,nums);
+        
+        return root;
+        
+        
     }
     Node* sortedArrayToBST(vector<int>& nums) {
         // Code here
         int l=0,h=nums.size()-1;
 
-        int mid= l+(h-l)/2;
-        Node* root=new Node(nums[mid]);
-        root->left=solve(root,0,mid-1,nums);
-        root->right=solve(root,mid+1,h,nums);
-        return root;
+        
+        return makeBST(l,h,nums);
         
     }
 };
