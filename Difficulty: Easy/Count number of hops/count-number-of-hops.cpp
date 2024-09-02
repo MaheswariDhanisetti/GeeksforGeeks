@@ -9,22 +9,24 @@ class Solution
     public:
     
     //Function to count the number of ways in which frog can reach the top.
-    vector<long long>memo;
-    const int mod=1e9+7;
-    long long compute(int n){
-        if(n>=0 and memo[n]!=-1) return memo[n];
-        if(n==0) return 1;
-        else if(n<0) return 0;
-        else memo[n] = (compute(n-1)+compute(n-2)+compute(n-3))%mod;
-        return memo[n];
-    }
+  
     long long countWays(int n)
     {
         
         // your code here
-        memo=vector<long long>(n+1,-1);
-        long long res=compute(n);
-        return res;
+        vector<long long>dp(n+1,0);
+        dp[0]=1;
+        const int mod=1e9+7;
+        
+        for(int i=1;i<=n;i++){
+            
+            if(i>=1) dp[i]=(dp[i]+dp[i-1])%mod;
+            if(i>=2) dp[i]=(dp[i]+dp[i-2])%mod;
+            if(i>=3) dp[i]=(dp[i]+dp[i-3])%mod;
+        }
+        
+        
+        return dp[n];
         
     }
 };
