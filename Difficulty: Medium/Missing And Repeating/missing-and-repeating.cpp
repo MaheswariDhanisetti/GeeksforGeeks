@@ -3,14 +3,15 @@
 
 using namespace std;
 
+
 // } Driver Code Ends
 class Solution{
 public:
-    vector<int> findTwoElement(vector<int> arr, int n) {
+    vector<int> findTwoElement(vector<int> arr) {
         // code here
         
         int a,b;
-        
+        int n=arr.size();
         for(int i=0;i<n;i++){
             if(arr[abs(arr[i])-1]<0)
                 a=abs(arr[i]);
@@ -31,6 +32,8 @@ public:
     }
 };
 
+
+
 //{ Driver Code Starts.
 
 int main() {
@@ -44,7 +47,7 @@ int main() {
             cin >> a[i];
         }
         Solution ob;
-        auto ans = ob.findTwoElement(a, n);
+        auto ans = ob.findTwoElement(a);
         cout << ans[0] << " " << ans[1] << "\n";
     }
     return 0;
