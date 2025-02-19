@@ -56,23 +56,21 @@ public:
     void create_tree(node* root0, vector<int> &vec){
         //Your code goes here
         
-        queue<node*>q;
-        q.push(root0);
-        int i=1;
-        while(!q.empty() && i<vec.size()){
-            
-            node* curr=q.front();
-            q.pop();
-            
-            curr->left=newNode(vec[i]);
-            i++;
-            q.push(curr->left);
-            curr->right=newNode(vec[i]);
-            i++;
-            q.push(curr->right);
-            
-            
-        }
+        /*root - n , left - 2*n+1 , right - 2*n+2 */
+        
+        root0->data = vec[0];
+        root0->left = newNode(vec[1]);
+       
+        root0->right = newNode(vec[2]);
+        
+        root0->left->left = newNode(vec[2*1+1]);
+        root0->left ->right = newNode(vec[2*1+2]);
+    
+        root0->right->left = newNode(vec[2*2+1]);
+        root0->right->right = newNode(vec[2*2+2]); 
+        
+        return ;
+        
     }
 
 };
@@ -114,7 +112,9 @@ int main(){
 
         
         // cout << "~\n";
-    }
+    
+cout << "~" << "\n";
+}
     // fclose(stdout);
 
     return 0;
