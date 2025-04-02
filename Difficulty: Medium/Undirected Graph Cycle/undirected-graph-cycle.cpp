@@ -8,32 +8,26 @@ using namespace std;
 class Solution {
   public:
   
-    bool bfs(vector<vector<int>>&adj  , vector<int>&vis , int node){
+    bool dfs(vector<vector<int>>&adj , vector<int>&vis , int node , int parent){
         
         vis[node] = 1;
-     
-        queue<pair<int,int>>q;
+       
+        bool curr = false;
         
-        q.push({node , node}); // {node , parent}
-        
-        while(!q.empty()){
+        for(int i=0;i<adj[node].size();i++){
             
-            int node = q.front().first;
-            int parent = q.front().second;
-            
-            q.pop();
-            
-            for(int i=0;i<adj[node].size();i++){
-                if(vis[adj[node][i]]==1 and adj[node][i]!=parent) return true;
-                else if(vis[adj[node][i]]==0){
-                    vis[adj[node][i]] =1;
-                    q.push({adj[node][i] , node});
-                }
+            if(vis[adj[node][i]]==1 and adj[node][i]!=parent){
+                return true;
+            }
+            else if(vis[adj[node][i]]==0){
+                curr = curr | dfs(adj ,vis, adj[node][i] ,node);
             }
             
         }
         
-        return false;
+        return curr;
+        
+        
     }
     
     bool isCycle(int V, vector<vector<int>>& edges) {
@@ -56,8 +50,7 @@ class Solution {
         
         for(int i=0;i<V;i++){
             if(vis[i]==0){
-                vis[i] = 1;
-                bool curr = bfs(adj , vis , i);
+                bool curr = dfs(adj , vis , i , i);
                 ans = curr | ans;
             }
         }
